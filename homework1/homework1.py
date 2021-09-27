@@ -78,6 +78,17 @@ def misclassify(x, y, w=None, iters=1000):
 
     return mistakes, weights
 
+
+################ Inner product ################
+vec_u = np.array([1,3])
+vec_v = np.array([-1,1])
+dot_prod = np.dot(vec_u, vec_v)
+print("dot_prod:", dot_prod)
+
+out_prod = np.outer(vec_u, vec_v)
+print("out_prod:", out_prod)
+
+
 ################ 1. Perceptron Mistakes ################
 
 x = np.array([[-1, -1], [1, 0], [-1, 1.5]])
