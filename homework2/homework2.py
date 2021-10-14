@@ -89,7 +89,7 @@ for a in y:
         print("uv[a][i]:", uv[a_count][i_count])
         loss = (i - uv[a_count][i_count]) * (i - uv[a_count][i_count])
         #loss = (i - uv[a_count][i_count]) * (i - uv[a_count][i_count]) / 2
-        if (uv[a_count][i_count] == 0):
+        if (i == 0): #if Y_ai == 0
             loss = 0
         print("loss: ", loss, "\n")
         total_loss = total_loss + loss
@@ -116,3 +116,5 @@ print("total reg_v_total:", reg_v_total)
 print("reg term v:", reg_v_total/2)
 
 print("total regularization term: ", (reg_u_total/2)+reg_v_total/2)
+
+
