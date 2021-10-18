@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 import _pickle as cPickle, gzip
 import numpy as np
 from tqdm import tqdm
@@ -31,7 +30,7 @@ def main():
     y_train = [y_train[i] for i in permutation]
 
     # Split dataset into batches
-    batch_size = 32
+    batch_size = 32 #64
     train_batches = batchify_data(X_train, y_train, batch_size)
     dev_batches = batchify_data(X_dev, y_dev, batch_size)
     test_batches = batchify_data(X_test, y_test, batch_size)
@@ -39,12 +38,12 @@ def main():
     #################################
     ## Model specification TODO
     model = nn.Sequential(
-              nn.Linear(784, 10),
-              nn.ReLU(),
-              nn.Linear(10, 10),
+              nn.Linear(784, 128), #(784, 10)
+              nn.ReLU(), #nn.LeakyReLU()
+              nn.Linear(128, 10), #(10, 10)
             )
-    lr=0.1
-    momentum=0
+    lr=0.1 #0.01
+    momentum=0 #0.9
     ##################################
 
     train_model(train_batches, dev_batches, model, lr=lr, momentum=momentum)

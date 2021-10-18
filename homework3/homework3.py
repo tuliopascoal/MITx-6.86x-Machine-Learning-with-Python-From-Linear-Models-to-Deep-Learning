@@ -9,3 +9,5 @@ w = np.array([[1, -1]]).T
 print("w:", w)
 print("x*w:", x*w)
 
+
+print(1 / (1 + math.exp(-1.15)))

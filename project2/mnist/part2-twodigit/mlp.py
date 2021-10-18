@@ -9,7 +9,7 @@ use_mini_dataset = True
 
 batch_size = 64
 nb_classes = 10
-nb_epoch = 30
+nb_epoch = 50
 num_classes = 10
 img_rows, img_cols = 42, 28 # input image dimensions
 
@@ -19,11 +19,18 @@ class MLP(nn.Module):
         super(MLP, self).__init__()
         self.flatten = Flatten()
         # TODO initialize model layers here
+        self.Linear1 = nn.Linear(input_dimension, 64)
+        self.Linear2 = nn.Linear(64, 20)
 
     def forward(self, x):
-        xf = self.flatten(x)
-
         # TODO use model layers to predict the two digits
+        xf = self.flatten(x)
+        xf = self.Linear1(xf)
+        xf = F.relu(xf)
+        xf = self.Linear2(xf)
+        out_first_digit = xf[:, :10]
+        # print("out_first_digit size: ", out_first_digit.shape)
+        out_second_digit = xf[:, -10:]
 
         return out_first_digit, out_second_digit
 

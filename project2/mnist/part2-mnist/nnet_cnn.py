@@ -10,6 +10,7 @@ import torch.nn as nn
 import sys
 sys.path.append("..")
 import utils
+from torchsummary import summary
 from utils import *
 from train_utils import batchify_data, run_epoch, train_model, Flatten
 
@@ -43,12 +44,19 @@ def main():
     #################################
     ## Model specification TODO
     model = nn.Sequential(
-              nn.Conv2d(1, 32, (3, 3)),
-              nn.ReLU(),
-              nn.MaxPool2d((2, 2)),
-            )
+        nn.Conv2d(1, 32, (3, 3)),
+        nn.ReLU(),
+        nn.MaxPool2d((2, 2)),
+        nn.Conv2d(32, 64, (3, 3)),
+        nn.ReLU(),
+        nn.MaxPool2d((2, 2)),
+        nn.Flatten(),
+        nn.Linear(1600, 128),
+        nn.Dropout(0.5),
+        nn.Linear(128, 10)
+    )
     ##################################
-
+    summary(model, (1, 28, 28))
     train_model(train_batches, dev_batches, model, nesterov=True)
 
     ## Evaluate the model on test data
