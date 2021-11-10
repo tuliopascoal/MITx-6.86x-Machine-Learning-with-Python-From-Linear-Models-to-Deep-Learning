@@ -134,3 +134,20 @@ if (isInside(circle_x, circle_y, rad, x, y)):
     print("Inside")
 else:
     print("Outside")
+
+################ Perceptron Midterm ################
+print("\n\n Midterm")
+
+
+x4 = np.array([[0, 0], [2, 0], [3, 0], [0, 2], [2, 2], [5, 1], [5, 2], [2, 4], [4, 4], [5, 5]])
+y4 = np.array([-1, -1, -1, -1, -1, 1, 1, 1, 1, 1])
+
+#print(perceptron(x4, y4))
+#print(perceptron(x4, y4, start=1))
+print("OK")
+
+
+mistakes, weights = misclassify(x4, y4)
+print("mistakes:", mistakes)
+print("weights:", weights)
+print("OK \n")
